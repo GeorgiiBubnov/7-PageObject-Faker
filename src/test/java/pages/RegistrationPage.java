@@ -6,10 +6,9 @@ import pages.components.CalendarComponent;
 import pages.components.TableComponent;
 
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
-public class RegistrationPage extends BasePage {
+public class RegistrationPage {
     CalendarComponent calendarComponent = new CalendarComponent();
     TableComponent tableComponent = new TableComponent();
 
@@ -30,7 +29,12 @@ public class RegistrationPage extends BasePage {
 
     public RegistrationPage openPage() {
         open("/automation-practice-form");
-        this.removeBanners();
+        return this;
+    }
+
+    public RegistrationPage removeBanner() {
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
         return this;
     }
 
